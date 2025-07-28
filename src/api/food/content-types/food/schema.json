@@ -11,16 +11,11 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "bunbo": {
-      "allowedTypes": [
-        "images",
-        "files",
-        "videos",
-        "audios"
-      ],
-      "type": "media",
-      "multiple": true,
-      "private": true
+    "bun_bo": {
+      "type": "string"
+    },
+    "pho": {
+      "type": "string"
     }
   }
 }
