@@ -365,6 +365,7 @@ export interface AdminUser extends Schema.CollectionType {
 export interface ApiCartCart extends Schema.CollectionType {
   collectionName: 'carts';
   info: {
+    description: '';
     displayName: 'Cart';
     pluralName: 'carts';
     singularName: 'cart';
@@ -376,10 +377,33 @@ export interface ApiCartCart extends Schema.CollectionType {
     createdAt: Attribute.DateTime;
     createdBy: Attribute.Relation<'api::cart.cart', 'oneToOne', 'admin::user'> &
       Attribute.Private;
-    product_cart: Attribute.String;
+    product_cart: Attribute.String & Attribute.Private;
     publishedAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     updatedBy: Attribute.Relation<'api::cart.cart', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+  };
+}
+
+export interface ApiFoodFood extends Schema.CollectionType {
+  collectionName: 'foods';
+  info: {
+    displayName: 'Food';
+    pluralName: 'foods';
+    singularName: 'food';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    bunbo: Attribute.Media<'images' | 'files' | 'videos' | 'audios', true> &
+      Attribute.Private;
+    createdAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<'api::food.food', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+    publishedAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    updatedBy: Attribute.Relation<'api::food.food', 'oneToOne', 'admin::user'> &
       Attribute.Private;
   };
 }
@@ -821,6 +845,7 @@ declare module '@strapi/types' {
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
       'api::cart.cart': ApiCartCart;
+      'api::food.food': ApiFoodFood;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;
